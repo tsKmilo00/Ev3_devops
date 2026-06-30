@@ -1,0 +1,24 @@
+name: Docker Build CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Build Backend Despachos
+      run: docker build -t backend-despachos "proyecto semestral/back-Despachos_SpringBoot/Springboot-API-REST-DESPACHO"
+
+    - name: Build Backend Ventas
+      run: docker build -t backend-ventas "proyecto semestral/back-Ventas_SpringBoot/Springboot-API-REST"
+
+    - name: Build Frontend
+      run: docker build -t frontend-despacho "proyecto semestral/front_despacho"
